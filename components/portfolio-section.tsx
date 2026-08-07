@@ -4,19 +4,19 @@ import Image from "next/image"
 export function PortfolioSection() {
   const projects = [
     {
-      title: "Studio user research and analysis",
+      title: "Modern Business Website",
       description:
-        "In ultricies viverra sed at hendrerit drogon nunc scelerisque nisl pellentesque et dignissim at aenean tempor adipiscing eget mi diam at tempus.",
+        "I designed and developed a responsive business website focused on clean visuals, intuitive navigation, and high conversion rates. The project emphasizes modern UI principles, fast performance, and an engaging user experience across all devices.",
       tag: "UI/UX Design",
       logo: "/images/studio-logo.svg",
       bgColor: "bg-[#6366F1]",
       illustration: "/images/studio-workspace.svg",
     },
     {
-      title: "Venture Workspace web app redesign",
+      title: "Creative Portfolio Website",
       description:
-        "In ultricies viverra sed at hendrerit drogon nunc scelerisque nisl pellentesque et dignissim at aenean tempor adipiscing eget mi diam at tempus.",
-      tag: "UI/UX Design",
+        "A premium portfolio website built to showcase creative work with smooth animations, responsive layouts, and a minimal design language. The goal was to create a memorable first impression while maintaining excellent usability.",
+      tag: "Web Design",
       logo: "/images/venture-logo.svg",
       bgColor: "bg-[#2F81F7]",
       illustration: "/images/venture-workspace.svg",

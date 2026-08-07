@@ -8,13 +8,14 @@ export function TestimonialsSection() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 pt-4 md:pt-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-[1.3]">
-            What my clients say
+            What My Clients Say
             <br />
-            about <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block">my work</span>
+            About <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block">My Work</span>
           </h2>
           <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto pb-8">
-            Lacus, adipiscing lectus convallis purus aliquet cursus magnaol montes augue donec cras turpis ultrices
-            nulla sed doler.
+            I&apos;m committed to delivering high-quality work that exceeds expectations. Every project is approached with
+            professionalism, clear communication, and attention to detail to ensure the best possible outcome for each
+            client.
           </p>
         </div>
 
@@ -33,13 +34,14 @@ export function TestimonialsSection() {
 
               <div className="md:max-w-[65%]">
                 <p className="text-sm md:text-base lg:text-lg mb-6 leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim et minim quis nostrud exercitation ullamco laboris.
+                  &quot;Working with Arihant was an excellent experience. He understood our vision quickly, communicated throughout the
+                  project, and delivered a modern, responsive website that exceeded our expectations. The attention to
+                  detail and overall design quality were outstanding.&quot;
                 </p>
 
                 <div>
-                  <div className="font-bold text-base md:text-lg">Lily Woods</div>
-                  <div className="text-gray-600 text-sm md:text-base">VP of Design at Google</div>
+                  <div className="font-bold text-base md:text-lg">— Future Client</div>
+                  <div className="text-gray-600 text-sm md:text-base">Client Testimonial</div>
                 </div>
               </div>
             </div>

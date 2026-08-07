@@ -5,31 +5,31 @@ import Image from "next/image"
 export function ExperienceSection() {
   const experiences = [
     {
-      period: "Jan 2023 - Present",
-      title: "Mobile Product Designer",
+      period: "2024 – Present",
+      title: "Freelance Web Designer & UI/UX Designer",
       description:
-        "Vel facilisis volutpat est velit egestas dui. Urna nec cidu praesent semper feugiat. Vulputate ut pharetra sit.",
+        "Designing responsive websites, landing pages, and user interfaces for businesses, creators, and personal brands using modern design practices and performance-focused development.",
       icon: "/images/agency.png",
     },
     {
-      period: "Jan 2021 - Dec 2022",
-      title: "VP of Design",
+      period: "2023 – Present",
+      title: "Video Editor",
       description:
-        "Vel facilisis volutpat est velit egestas dui. Urna nec cidu praesent semper feugiat. Vulputate ut pharetra sit.",
+        "Creating promotional videos, social media content, and cinematic edits using professional editing techniques, motion graphics, and visual storytelling.",
       icon: "/images/company.png",
     },
     {
-      period: "Mar 2020 - Dec 2020",
-      title: "Head of Product Design",
+      period: "2022 – Present",
+      title: "WordPress Developer",
       description:
-        "Vel facilisis volutpat est velit egestas dui. Urna nec cidu praesent semper feugiat. Vulputate ut pharetra sit.",
+        "Building customizable, SEO-friendly, and fully responsive WordPress websites with a focus on speed, usability, and scalability.",
       icon: "/images/busines.png",
     },
     {
-      period: "Sep 2017 - Feb 2020",
-      title: "Web Designer",
+      period: "2021 – Present",
+      title: "Creative Designer",
       description:
-        "Vel facilisis volutpat est velit egestas dui. Urna nec cidu praesent semper feugiat. Vulputate ut pharetra sit.",
+        "Developing branding assets, UI concepts, website mockups, and digital content while continuously improving design skills through personal and freelance projects.",
       icon: "/images/startup.png",
     },
   ]
@@ -43,8 +43,9 @@ export function ExperienceSection() {
               Take a look at my <span className="bg-[#6366F1] text-white px-3 py-1 inline-block">past experience</span>
             </h2>
             <p className="text-gray-400 mb-8 md:mb-10 leading-relaxed text-base md:text-lg">
-              Eu pellentesque arcu ornare velit faucibus egestas gravida sed in purus enim molestie gravida imperdiet
-              integer.
+              Over the past few years, I&apos;ve worked on designing modern websites, creating engaging user interfaces, and delivering
+              creative digital solutions. My focus has always been on combining aesthetics with functionality to build
+              experiences users genuinely enjoy.
             </p>
             <Button className="bg-white text-black hover:bg-gray-50 rounded-lg py-5 px-8 md:py-[22px] md:px-[62px] text-base md:text-lg font-semibold h-auto w-full sm:w-auto sm:min-w-[240px]">
               <FileText className="w-5 h-5" />
