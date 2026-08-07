@@ -14,12 +14,13 @@ export function AboutSection() {
 
         <div className="space-y-6 md:space-y-8">
           <div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Who's behind all this <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block">great work?</span>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              Who&apos;s behind all this <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block">great work?</span>
             </h2>
             <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-              Eu pellentesque arcu ornare velit faucibus egestas gravida sed in purus enim molestie gravida imperdiet
-              integer.
+              I&apos;m a 17-year-old UI/UX Designer and Web Designer from India, passionate about building modern websites
+              that combine creativity, performance, and exceptional user experiences. I enjoy turning ideas into polished
+              digital products that leave a lasting impression.
             </p>
           </div>
 
@@ -27,9 +28,11 @@ export function AboutSection() {
             <div className="flex gap-4 items-start">
               <div className="w-5 h-5 bg-[#6366F1] border-2 border-black rounded-[5px] flex-shrink-0 mt-1"></div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold mb-2">15+ years of experience</h3>
+                <h3 className="text-lg md:text-xl font-bold mb-2">4+ Years of Experience</h3>
                 <p className="text-gray-600 text-sm md:text-base">
-                  Eu pellentesque arcu ornare velit faucibus egestas me gravida sed in purus enim molestie gravida.
+                  Over four years of experience in web design, UI/UX, and creative digital solutions. Throughout my
+                  journey, I&apos;ve refined my skills in designing responsive websites, intuitive user interfaces, and
+                  visually engaging experiences that help businesses and creators stand out online.
                 </p>
               </div>
             </div>
@@ -37,9 +40,11 @@ export function AboutSection() {
             <div className="flex gap-4 items-start">
               <div className="w-5 h-5 bg-[#FF6B7A] border-2 border-black rounded-[5px] flex-shrink-0 mt-1"></div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold mb-2">100+ successfull projects</h3>
+                <h3 className="text-lg md:text-xl font-bold mb-2">5 Successful Projects</h3>
                 <p className="text-gray-600 text-sm md:text-base">
-                  Eu pellentesque arcu ornare velit faucibus egestas me gravida sed in purus enim molestie gravida.
+                  Successfully delivered multiple web design and creative projects for clients, focusing on quality,
+                  attention to detail, and user satisfaction. Each project reflects a commitment to clean design, modern
+                  development practices, and achieving the client&apos;s vision.
                 </p>
               </div>
             </div>

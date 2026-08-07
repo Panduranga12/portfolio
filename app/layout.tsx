@@ -3,19 +3,24 @@ import type { Metadata } from "next"
 
 import "./globals.css"
 
-import { Onest, Geist_Mono as V0_Font_Geist_Mono } from "next/font/google"
+import { Caudex, Dosis, PT_Serif_Caption } from "next/font/google"
 
-// Initialize fonts
-const _geistMono = V0_Font_Geist_Mono({
+const dosis = Dosis({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-dosis",
 })
 
-// Initialize Onest font with weights 500 and 700
-const onest = Onest({
+const caudex = Caudex({
   subsets: ["latin"],
-  weight: ["500", "700"],
-  variable: "--font-onest",
+  weight: ["400", "700"],
+  variable: "--font-caudex",
+})
+
+const ptSerifCaption = PT_Serif_Caption({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-pt-serif-caption",
 })
 
 export const metadata: Metadata = {
@@ -30,8 +35,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${onest.variable} font-sans antialiased overflow-x-hidden`}>{children}</body>
+    <html lang="en" className="bg-background">
+      <body
+        className={`${dosis.variable} ${caudex.variable} ${ptSerifCaption.variable} font-sans antialiased overflow-x-hidden`}
+      >
+        {children}
+      </body>
     </html>
   )
 }

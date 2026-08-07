@@ -40,14 +40,14 @@ export function ArticlesSection() {
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-[#FDB927] border-2 border-black rounded-full overflow-hidden flex-shrink-0">
                   <Image
                     src="/images/design-mode/63407fbdc2d4ac5270385fd4_home-he.png"
-                    alt="John Carter"
+                    alt="Arihant Katiyar"
                     width={64}
                     height={64}
                     className="object-cover"
                   />
                 </div>
                 <div>
-                  <div className="font-bold text-base md:text-lg text-[#0B0B0B]">John Carter</div>
+                  <div className="font-bold text-base md:text-lg text-[#0B0B0B]">Arihant Katiyar</div>
                   <div className="text-sm md:text-base text-gray-600">Oct 28, 2022</div>
                 </div>
               </div>

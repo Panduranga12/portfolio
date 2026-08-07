@@ -75,8 +75,12 @@
 }
 
 @theme inline {
-  --font-sans: "Onest", "Onest Fallback", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", monospace;
+  --font-sans: "Dosis", "Dosis Fallback", system-ui, sans-serif;
+  --font-serif: "Caudex", "Caudex Fallback", Georgia, serif;
+  --font-mono: "PT Serif Caption", "PT Serif Caption Fallback", Georgia, serif;
+  --font-dosis: "Dosis", "Dosis Fallback", system-ui, sans-serif;
+  --font-caudex: "Caudex", "Caudex Fallback", Georgia, serif;
+  --font-pt-serif: "PT Serif Caption", "PT Serif Caption Fallback", Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

@@ -1,19 +1,50 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import { Mail, FolderOpen } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
+
+const roles = ["Web Designer", "Video Editor"]
 
 export function HeroSection() {
+  const [roleIndex, setRoleIndex] = useState(0)
+  const [displayedRole, setDisplayedRole] = useState(roles[0])
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex]
+    const isComplete = displayedRole === currentRole
+    const delay = isComplete && !isDeleting ? 1800 : isDeleting ? 70 : 110
+
+    const timer = window.setTimeout(() => {
+      if (!isDeleting && isComplete) {
+        setIsDeleting(true)
+      } else if (isDeleting && displayedRole.length === 0) {
+        setIsDeleting(false)
+        setRoleIndex((index) => (index + 1) % roles.length)
+      } else {
+        setDisplayedRole(
+          isDeleting ? currentRole.slice(0, displayedRole.length - 1) : currentRole.slice(0, displayedRole.length + 1),
+        )
+      }
+    }, delay)
+
+    return () => window.clearTimeout(timer)
+  }, [displayedRole, isDeleting, roleIndex])
   return (
     <section className="container mx-auto px-4 py-16 md:py-24">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
-          <h1 className="text-[42px] leading-[50px] md:text-[72px] font-bold md:leading-[85px]">
-            I'm <span className="bg-[#FF6B7A] text-white px-3 py-1 inline-block">John Carter</span>, a Web Designer from{" "}
-            <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block">New York</span>
+          <h1 className="font-sans text-[42px] leading-[50px] md:text-[72px] font-bold md:leading-[85px]">
+            I&apos;m <span className="bg-[#FF6B7A] text-white px-3 py-1 inline-block">Arihant Katiyar</span>, a{" "}
+            <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block min-w-[220px]">{displayedRole}<span className="ml-1 inline-block animate-pulse">|</span></span>{" "}
+            from <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block">India</span>
           </h1>
 
-          <p className="text-[#393939] text-[16px] md:text-[18px] font-medium leading-[28px] md:leading-[30px] max-w-xl">
-            Lacus, adipiscing lectus convallis purus aliquet cursus magnaol montes augue donec cras turpis ultrices
-            nulla sed doler.
+          <p className="font-mono text-[#393939] text-[16px] md:text-[18px] font-medium leading-[28px] md:leading-[30px] max-w-xl">
+            I Design Websites with Finesse, crafting modern, responsive, and user-focused digital experiences that blend
+            stunning visuals with seamless functionality.
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-7 pt-4">
