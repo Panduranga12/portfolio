@@ -44,11 +44,11 @@ export function Footer() {
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
                   <Image
-                    src="/images/footer-logo.jpeg"
-                    alt="Paperfolio X Logo"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3DUw3mRuGYrg613yJoCBvDoPu0TGi2.png"
+                    alt="Arihant Katiyar logo"
                     width={32}
                     height={32}
-                    className="object-cover"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <span className="text-lg md:text-xl font-bold">Arihant Katiyar</span>
