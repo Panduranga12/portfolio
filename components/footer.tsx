@@ -42,7 +42,7 @@ export function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 shadow-[0_0_10px_3px_rgba(217,255,45,0.4)]">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3DUw3mRuGYrg613yJoCBvDoPu0TGi2.png"
                     alt="Arihant Katiyar logo"

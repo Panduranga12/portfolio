@@ -13,7 +13,7 @@ export function Navigation() {
   return (
     <div className="container mx-auto px-4 pt-8 pb-4">
       <nav className="flex items-center justify-between bg-white border-4 border-black rounded-xl px-5 py-3 max-w-2xl mx-auto shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-black flex-shrink-0">
+        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-black flex-shrink-0 shadow-[0_0_14px_4px_rgba(217,255,45,0.45)]">
           <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3DUw3mRuGYrg613yJoCBvDoPu0TGi2.png" alt="Arihant Katiyar logo" className="w-full h-full object-cover" />
         </div>
 
