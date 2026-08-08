@@ -1,0 +1,6 @@
+import { AuthForm } from "@/components/auth/auth-form"
+
+export default async function SignUpPage({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
+  const params = await searchParams
+  return <main className="min-h-screen bg-[#F7F4EE] px-5 py-8 text-black"><div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl items-center overflow-hidden rounded-[2rem] border-4 border-black bg-white shadow-[10px_10px_0_0_#000]"><div className="flex flex-1 justify-center p-7 md:p-12"><AuthForm mode="signup" next={params.next ?? null}/></div><div className="hidden min-h-[680px] flex-1 flex-col justify-between bg-[#FF6B7A] p-10 lg:flex"><div className="flex items-center justify-between"><span className="rounded-full bg-black px-4 py-2 font-bold text-white">AK</span><span className="font-mono text-xs font-bold uppercase tracking-widest">Join the studio</span></div><div><p className="font-mono text-sm uppercase tracking-widest">Build something bold</p><h2 className="mt-4 max-w-lg font-serif text-7xl font-bold leading-[.9]">Your next great idea deserves a place to land.</h2></div><p className="max-w-sm font-mono text-sm">A simple, secure account for keeping your project history close.</p></div></div></main>
+}
