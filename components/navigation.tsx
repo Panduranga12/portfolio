@@ -1,8 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { Mail } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { createClient } from "@/lib/supabase/client"
 
 export function Navigation() {
@@ -28,9 +26,6 @@ export function Navigation() {
         <div className="ml-auto flex items-center gap-1 md:gap-2">
           <a href="/cart" onClick={openCart} className="whitespace-nowrap text-[17px] font-bold leading-[20px] hover:opacity-70 transition-opacity">Cart(0)</a>
           <Link href="/auth/login" className="whitespace-nowrap rounded-sm border-2 border-black px-3 py-3 text-[15px] font-bold hover:bg-[#FFC224] transition-colors">Login / Sign up</Link>
-          <Button aria-label="Contact Arihant" className="bg-black text-white hover:bg-black/90 rounded-sm px-4 h-12 min-w-[48px] flex-shrink-0">
-            <Mail className="h-5 w-5" strokeWidth={2.5} />
-          </Button>
         </div>
       </nav>
     </div>
