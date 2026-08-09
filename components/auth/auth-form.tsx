@@ -44,7 +44,7 @@ export function AuthForm({ mode, next }: { mode: "login" | "signup"; next: strin
       }
     } else if (mode === "signup" && step === "credentials") {
       const { error } = await supabase.auth.signInWithOtp({ email, options: { shouldCreateUser: true } })
-      if (error) setError("We couldn&apos;t send that code. Check your email and try again.")
+      if (error) setError("Are you sure this is your right mail...?")
       else { setStep("code"); setMessage("Your verification code is on its way.") }
     } else if (mode === "signup") {
       const { error } = await supabase.auth.verifyOtp({ email, token: code, type: "email" })
@@ -64,7 +64,7 @@ export function AuthForm({ mode, next }: { mode: "login" | "signup"; next: strin
   const score = passwordScore(password)
 
   return <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700">
-    <div className="mb-8"><p className="font-mono text-xs uppercase tracking-[0.25em] text-blue-600">Arihant Katiyar / member area</p><h1 className="mt-3 font-serif text-5xl font-bold leading-none">{mode === "login" ? "Welcome back." : "Let&apos;s make it official."}</h1><p className="mt-4 text-base leading-relaxed text-gray-600">{mode === "login" ? "Sign in to check your orders and keep your creative journey moving." : "Create an account with your email, then confirm it with a one-time code."}</p></div>
+    <div className="mb-8"><p className="font-mono text-xs uppercase tracking-[0.25em] text-blue-600">Arihant Katiyar / member area</p><h1 className="mt-3 font-serif text-5xl font-bold leading-none">{mode === "login" ? "Welcome back." : "Lets make it official"}</h1><p className="mt-4 text-base leading-relaxed text-gray-600">{mode === "login" ? "Sign in to check your orders and keep your creative journey moving." : "Create an account with your email, then confirm it with a one-time code."}</p></div>
     {step === "mfa" && <div className="mb-5 flex items-center gap-3 rounded-xl border-2 border-black bg-[#FFC224] p-4 text-sm font-semibold"><ShieldCheck size={22} /> Two-factor verification required.</div>}
     {isAdmin && <p className="mb-4 rounded-xl border-2 border-black bg-[#8B5CF6] p-3 text-sm font-bold">Admin account recognized. Protected permissions are enforced server-side.</p>}
     {step === "credentials" && <><div className="grid grid-cols-3 gap-3"><button type="button" onClick={() => oauth("google")} className="flex h-12 items-center justify-center rounded-xl border-2 border-black bg-white font-semibold transition hover:-translate-y-1 hover:bg-[#FFC224]" aria-label="Continue with Google">G</button><button type="button" onClick={() => oauth("github")} className="flex h-12 items-center justify-center rounded-xl border-2 border-black bg-white transition hover:-translate-y-1 hover:bg-[#8B5CF6]" aria-label="Continue with GitHub"><Github size={20}/></button><button type="button" onClick={() => oauth("facebook")} className="flex h-12 items-center justify-center rounded-xl border-2 border-black bg-white transition hover:-translate-y-1 hover:bg-[#FF6B7A]" aria-label="Continue with Facebook"><Facebook size={20}/></button></div><div className="my-7 flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-gray-400"><span className="h-px flex-1 bg-gray-300"/>or email<span className="h-px flex-1 bg-gray-300"/></div></>}
