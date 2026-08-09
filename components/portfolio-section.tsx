@@ -1,102 +1,16 @@
-import { ArrowRight } from "lucide-react"
+"use client"
+
+import { useState } from "react"
+import { ArrowRight, ExternalLink } from "lucide-react"
 import Image from "next/image"
 
+const projects = [
+  { title: "Modern Business Website", description: "A responsive business experience focused on clear visuals, intuitive navigation, and high conversion.", tag: "UI/UX Design", logo: "/images/studio-logo.svg", bgColor: "bg-[#6366F1]", illustration: "/images/studio-workspace.svg" },
+  { title: "Creative Portfolio Website", description: "A premium portfolio with smooth motion, responsive layouts, and a confident visual language.", tag: "Web Design", logo: "/images/venture-logo.svg", bgColor: "bg-[#2F81F7]", illustration: "/images/venture-workspace.svg" },
+]
+
 export function PortfolioSection() {
-  const projects = [
-    {
-      title: "Modern Business Website",
-      description:
-        "I designed and developed a responsive business website focused on clean visuals, intuitive navigation, and high conversion rates. The project emphasizes modern UI principles, fast performance, and an engaging user experience across all devices.",
-      tag: "UI/UX Design",
-      logo: "/images/studio-logo.svg",
-      bgColor: "bg-[#6366F1]",
-      illustration: "/images/studio-workspace.svg",
-    },
-    {
-      title: "Creative Portfolio Website",
-      description:
-        "A premium portfolio website built to showcase creative work with smooth animations, responsive layouts, and a minimal design language. The goal was to create a memorable first impression while maintaining excellent usability.",
-      tag: "Web Design",
-      logo: "/images/venture-logo.svg",
-      bgColor: "bg-[#2F81F7]",
-      illustration: "/images/venture-workspace.svg",
-    },
-  ]
-
-  return (
-    <section className="container mx-auto px-4 py-16 md:py-24">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Take a look at my <br />
-            <span className="bg-[#FFC224] text-black px-3 py-1 inline-block">design portfolio</span>
-          </h2>
-        </div>
-
-        <div className="space-y-8 mb-12">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group grid md:grid-cols-2 bg-white border-[3px] border-black rounded-[32px] overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all"
-            >
-              <div className="p-6 md:p-12 flex flex-col justify-center bg-white">
-                <div className="flex items-center gap-3 mb-6">
-                  <Image
-                    src={project.logo || "/placeholder.svg"}
-                    alt={`${project.title} logo`}
-                    width={120}
-                    height={32}
-                    className="h-6 md:h-8 w-auto"
-                  />
-                </div>
-
-                <span className="inline-block bg-black text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-6 w-fit">
-                  {project.tag}
-                </span>
-
-                <h3 className="text-xl md:text-[28px] font-bold mb-4 leading-tight md:leading-[40px] text-[#0B0B0B]">
-                  {project.title}
-                </h3>
-
-                <p className="text-base md:text-[18px] text-[#393939] mb-8 leading-relaxed md:leading-[30px] font-medium">
-                  {project.description}
-                </p>
-
-                <a
-                  href="#"
-                  className="flex items-center gap-2 font-semibold text-[#0B0B0B] hover:gap-3 transition-all text-sm md:text-base"
-                >
-                  View case study
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-
-              <div className={`${project.bgColor} relative overflow-hidden min-h-[250px] md:min-h-[500px]`}>
-                <Image
-                  src={project.illustration || "/placeholder.svg"}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex justify-center">
-          <button className="bg-black text-white px-6 md:px-8 py-4 md:py-5 rounded-[12px] font-semibold hover:bg-gray-900 transition-colors flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            Browse all portfolio
-          </button>
-        </div>
-      </div>
-    </section>
-  )
+  const [active, setActive] = useState<number | null>(null)
+  const [cursor, setCursor] = useState({ x: 0, y: 0 })
+  return <section className="container mx-auto px-4 py-16 md:py-24"><div className="mx-auto max-w-7xl"><div className="mb-12 text-center"><h2 className="mb-4 text-3xl font-bold md:text-5xl">Take a look at my <br /><span className="inline-block bg-[#FFC224] px-3 py-1 text-black">design portfolio</span></h2><p className="mx-auto max-w-2xl text-base leading-relaxed text-gray-600">Move your cursor across each project to reveal a responsive, tactile preview.</p></div><div className="space-y-8 mb-12">{projects.map((project, index) => <article key={project.title} onMouseEnter={() => setActive(index)} onMouseLeave={() => setActive(null)} onMouseMove={event => { const rect = event.currentTarget.getBoundingClientRect(); setCursor({ x: (event.clientX - rect.left) / rect.width * 100, y: (event.clientY - rect.top) / rect.height * 100 }) }} className="group grid overflow-hidden rounded-[32px] border-[3px] border-black bg-white transition-shadow hover:shadow-[8px_8px_0_0_#000] md:grid-cols-2"><div className="flex flex-col justify-center p-6 md:p-12"><div className="mb-6 flex items-center gap-3"><Image src={project.logo} alt={`${project.title} logo`} width={120} height={32} className="h-6 w-auto md:h-8" /></div><span className="mb-6 inline-block w-fit rounded-full bg-black px-4 py-1.5 text-xs font-semibold text-white">{project.tag}</span><h3 className="mb-4 text-xl font-bold leading-tight text-[#0B0B0B] md:text-[28px]">{project.title}</h3><p className="mb-8 text-base font-medium leading-relaxed text-[#393939] md:text-[18px]">{project.description}</p><a href="/portfolio" className="flex items-center gap-2 text-sm font-semibold text-[#0B0B0B] transition-all hover:gap-3 md:text-base">View case study <ArrowRight className="h-4 w-4" /></a></div><div className={`${project.bgColor} relative min-h-[280px] overflow-hidden md:min-h-[500px]`} style={{ perspective: "900px" }}><div className="absolute inset-0 transition-transform duration-300 ease-out" style={{ transform: active === index ? `translate(${(cursor.x - 50) / 12}px, ${(cursor.y - 50) / 12}px) scale(1.08) rotateX(${(50 - cursor.y) / 35}deg) rotateY(${(cursor.x - 50) / 35}deg)` : "scale(1)" }}><Image src={project.illustration} alt={project.title} fill className="object-cover" /></div><div className="absolute bottom-5 right-5 flex items-center gap-2 rounded-full border-2 border-black bg-[#FFC224] px-4 py-2 text-xs font-bold opacity-0 transition-opacity group-hover:opacity-100"><ExternalLink className="h-3 w-3" /> Explore</div></div></article>)}</div><div className="flex justify-center"><a href="/portfolio" className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-black px-6 py-4 font-semibold text-white transition-colors hover:bg-gray-900 sm:w-auto">Browse all portfolio <ArrowRight className="h-5 w-5" /></a></div><div className="mt-12 rounded-[24px] border-2 border-black bg-white p-2 shadow-[6px_6px_0_0_#000]"><iframe title="Portfolio reference images" src="https://blobs.vusercontent.net/blob/compiled_images-aYS5pvNExxE4sgyMbtFjRcDfBq2mzR.pdf" className="h-[420px] w-full rounded-[18px] md:h-[640px]" /></div></div></section>
 }
