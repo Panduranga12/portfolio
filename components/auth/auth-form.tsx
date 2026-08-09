@@ -44,7 +44,10 @@ export function AuthForm({ mode, next }: { mode: "login" | "signup"; next: strin
       }
     } else if (mode === "signup" && step === "credentials") {
       const { error } = await supabase.auth.signInWithOtp({ email, options: { shouldCreateUser: true } })
-      if (error) setError("Are you sure this is your right mail...?")
+      if (error) {
+        const details = error.message.toLowerCase()
+        setError(details.includes("rate") || details.includes("too many") ? "Too many email attempts. Please wait a moment before trying again." : "Are you sure this is your right mail...? Check the address and try again.")
+      }
       else { setStep("code"); setMessage("Your verification code is on its way.") }
     } else if (mode === "signup") {
       const { error } = await supabase.auth.verifyOtp({ email, token: code, type: "email" })
@@ -62,8 +65,11 @@ export function AuthForm({ mode, next }: { mode: "login" | "signup"; next: strin
 
   async function oauth(provider: "google" | "github" | "facebook") { setLoading(true); setError(""); const { error } = await supabase.auth.signInWithOAuth({ provider, options: { redirectTo } }); if (error) { setError("That sign-in option is currently unavailable."); setLoading(false) } }
   const score = passwordScore(password)
+  const backHref = mode === "signup" ? "/auth/login" : "/"
+  const backLabel = mode === "signup" ? "Back to login" : "Back to home"
 
   return <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <Link href={backHref} className="mb-8 inline-flex items-center rounded-lg border-2 border-black bg-white px-3 py-2 text-sm font-bold transition hover:-translate-y-0.5 hover:bg-[#FFC224]">← {backLabel}</Link>
     <div className="mb-8"><p className="font-mono text-xs uppercase tracking-[0.25em] text-blue-600">Arihant Katiyar / member area</p><h1 className="mt-3 font-serif text-5xl font-bold leading-none">{mode === "login" ? "Welcome back." : "Lets make it official"}</h1><p className="mt-4 text-base leading-relaxed text-gray-600">{mode === "login" ? "Sign in to check your orders and keep your creative journey moving." : "Create an account with your email, then confirm it with a one-time code."}</p></div>
     {step === "mfa" && <div className="mb-5 flex items-center gap-3 rounded-xl border-2 border-black bg-[#FFC224] p-4 text-sm font-semibold"><ShieldCheck size={22} /> Two-factor verification required.</div>}
     {isAdmin && <p className="mb-4 rounded-xl border-2 border-black bg-[#8B5CF6] p-3 text-sm font-bold">Admin account recognized. Protected permissions are enforced server-side.</p>}
