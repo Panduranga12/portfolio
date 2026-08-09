@@ -24,7 +24,8 @@ export function AuthForm({ mode, next }: { mode: "login" | "signup"; next: strin
   useEffect(() => { if (mode === "login") setEmail(window.localStorage.getItem("portfolio-auth-email") || "") }, [mode])
   useEffect(() => { if (!cooldown) return; const timer = window.setInterval(() => setCooldown(value => Math.max(0, value - 1)), 1000); return () => window.clearInterval(timer) }, [cooldown])
 
-  const redirectTo = `${typeof window !== "undefined" ? window.location.origin : ""}/auth/callback?next=${encodeURIComponent(safeNext(next))}`
+  const redirectBase = process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ?? `${typeof window !== "undefined" ? window.location.origin : ""}/auth/callback`
+  const redirectTo = `${redirectBase}${redirectBase.includes("?") ? "&" : "?"}next=${encodeURIComponent(safeNext(next))}`
   const finish = () => { window.localStorage.setItem("portfolio-auth-email", email); window.location.assign(safeNext(next)) }
 
   async function submit(event: React.FormEvent) {
