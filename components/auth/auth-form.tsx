@@ -39,9 +39,24 @@ export function AuthForm({ mode, next }: { mode: "login" | "signup"; next: strin
       else {
         const admin = data.user?.app_metadata?.role === "admin" || data.user?.user_metadata?.role === "admin"
         setIsAdmin(admin)
+        const assurance = await supabase.auth.mfa.getAuthenticatorAssuranceLevel()
         const { data: factors } = await supabase.auth.mfa.listFactors()
         const totp = factors?.totp?.find(factor => factor.status === "verified")
-        if (totp) { await supabase.auth.mfa.challenge({ factorId: totp.id }); setStep("mfa"); setMessage("Enter your authenticator code to continue.") } else finish()
+        if (totp && assurance.data.nextLevel === "aal2" && assurance.data.currentLevel !== "aal2") {
+          const challenge = await supabase.auth.mfa.challenge({ factorId: totp.id })
+          if (challenge.error || !challenge.data?.challengeId) {
+            await supabase.auth.signOut()
+            setError("Unable to start two-factor verification. Please sign in again.")
+            setLoading(false)
+            return
+          }
+          window.sessionStorage.setItem("portfolio-mfa-factor-id", totp.id)
+          window.sessionStorage.setItem("portfolio-mfa-challenge-id", challenge.data.challengeId)
+          window.sessionStorage.setItem("portfolio-mfa-next", safeNext(next))
+          window.location.assign("/auth/mfa")
+          return
+        }
+        finish()
       }
     } else if (mode === "signup" && step === "credentials") {
       const { error } = await supabase.auth.signInWithOtp({ email, options: { shouldCreateUser: true } })

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 
 export default function MfaPage() {
@@ -8,14 +8,37 @@ export default function MfaPage() {
   const [factorId, setFactorId] = useState("")
   const [code, setCode] = useState("")
   const [message, setMessage] = useState("")
+  const [challengeId, setChallengeId] = useState("")
+  const [nextPath, setNextPath] = useState("/cart")
+  useEffect(() => {
+    const pendingFactorId = window.sessionStorage.getItem("portfolio-mfa-factor-id")
+    const pendingChallengeId = window.sessionStorage.getItem("portfolio-mfa-challenge-id")
+    const pendingNext = window.sessionStorage.getItem("portfolio-mfa-next")
+    if (pendingFactorId && pendingChallengeId) {
+      setFactorId(pendingFactorId)
+      setChallengeId(pendingChallengeId)
+      setNextPath(pendingNext || "/cart")
+      setMessage("Enter the six-digit code from your authenticator app to finish signing in.")
+    }
+  }, [])
   async function enroll() {
     const { data, error } = await createClient().auth.mfa.enroll({ factorType: "totp", friendlyName: "Arihant authenticator" })
     if (error) setMessage("Please sign in before setting up two-factor authentication.")
     else { setQr(data?.totp.qr_code ?? ""); setFactorId(data?.id ?? ""); setMessage("Scan the QR code, then enter the six-digit code.") }
   }
   async function verify() {
-    const supabase = createClient(); const challenge = await supabase.auth.mfa.challenge({ factorId })
-    if (challenge.error || !challenge.data.challengeId) return setMessage("Could not start verification.")
+    const supabase = createClient()
+    if (challengeId && factorId) {
+      const result = await supabase.auth.mfa.verify({ factorId, challengeId, code })
+      if (result.error) return setMessage("That code is invalid.")
+      window.sessionStorage.removeItem("portfolio-mfa-factor-id")
+      window.sessionStorage.removeItem("portfolio-mfa-challenge-id")
+      window.sessionStorage.removeItem("portfolio-mfa-next")
+      window.location.assign(nextPath)
+      return
+    }
+    const challenge = await supabase.auth.mfa.challenge({ factorId })
+    if (challenge.error || !challenge.data?.challengeId) return setMessage("Could not start verification.")
     const result = await supabase.auth.mfa.verify({ factorId, challengeId: challenge.data.challengeId, code })
     setMessage(result.error ? "That code is invalid." : "Two-factor authentication is enabled.")
   }
